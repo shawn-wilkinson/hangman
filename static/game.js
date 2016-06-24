@@ -1,6 +1,7 @@
 $(document).ready(init);
 
 function init() {
+  console.log('loaded!');
   $('#newgame').click(newgame);
   // $('#flip').click(flip);
 }
@@ -13,11 +14,14 @@ function newgame() {
     dataType: 'json',
     data: { playerName },
     success: function(rsp) {
-      console.log('back from server:', rsp);
-      // $('#person').text(rsp.name);
-      // $('#id').text(rsp._id);
-      // $('#heads').text(rsp.heads);
-      // $('#tails').text(rsp.tails);
+      updateGame(rsp);
     }
   });
+}
+
+function updateGame(game){
+  var wordArray = game.wordArray;
+  var guesses = game.guessArray;
+  var attempts = game.attempts;
+  console.log('words:', wordArray, guesses, attempts);
 }
